@@ -10,6 +10,8 @@ base_screw_size=3;
 screws=base_screw_size+screw_correction;
 screw_res=40;
 
+rounding = 2; // just for the cable tie slots (less = sharper corners)
+
 // Goes around the aluminum bar.
 module frame(length, thickness){
     sides=thickness*2;
@@ -30,6 +32,18 @@ module frame(length, thickness){
         translate([(rod_size+sides)/2-sides/2,rod_size,-1])
         cube([sides,rod_size,length+2]);
         
+    }
+}
+
+// rounded rectangle module
+slot_width=12; // how wide slots are
+
+module sidePort(x,y, rounding=rounding){
+    rotate([0,90,0])
+    minkowski()
+    {
+      cube([y-rounding*2,x-rounding*2,1],center=true);
+      cylinder(r=rounding,h=5, $fn=circle_res);
     }
 }
 
@@ -113,11 +127,16 @@ module RPi_core(){
         translate([60,14,9])
         sidePort(14,10);
         // microSD slot
-        translate([22,-1,-1])
+        translate([22,-1,-0.99])
         cube([20,8,10]);
         // rear camera ribbons slot
         translate([4,-1,9])
         cube([56,5,case_height]);
+        // cable tie slots
+        translate([60,55,case_height-5])
+        sidePort(slot_width,4.2);
+        translate([-1,55,case_height-5])
+        sidePort(slot_width,4.2);
     }
 }
 
@@ -132,3 +151,5 @@ module RPi_bottom(){
 }
 
 RPi_bottom();
+// import cover for debugging
+// #translate([64,0,case_height+6]) rotate([0,180,0]) import("R3SC_RPi_top.stl");
