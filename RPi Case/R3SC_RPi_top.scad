@@ -3,14 +3,6 @@
 // Last update: 1/20/2017
 // for the Borevitz Lab, Australian National University
 
-// original Sketchup version for comparison
-// no longer in use
-module importBase(){ 
-rotate([0,180,0])
-translate([0,0,-37])
-import("RPi_case_top.stl");
-}
-
 // just the cover without holes
 module baseCover(){ 
     difference(){
