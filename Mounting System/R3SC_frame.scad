@@ -5,7 +5,7 @@
 bar_screw_size=3; // in mm
 frame_thickness=3; 
 $fn=30; // fix constant 
-frame_width=15;
+frame_width=10;
 
 // Constants (may still need adjustment for printing)
 top_screw_size=3; 
