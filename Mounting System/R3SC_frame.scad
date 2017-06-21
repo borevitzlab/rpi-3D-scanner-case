@@ -13,6 +13,14 @@ top_length=105;
 side_length=212;
 
 
+module rounded_corner(length,radius){
+    difference(){
+        cube([radius,radius, length]);
+        translate([0,0,-0.5])
+        cylinder(r=radius,h=length+1);
+    }
+}
+
 module frame_half(){
     difference(){
         union(){
@@ -26,6 +34,13 @@ module frame_half(){
             //bottom
             translate([0,top_length/2,-side_length])
             cube([frame_width, top_length/4, frame_thickness]);
+            translate([0,top_length/2+frame_thickness*2-fudge,-side_length+frame_thickness*2-fudge])
+            rotate([0,90,0])
+            rotate([0,0,270])
+            rounded_corner(frame_width,frame_thickness);
+            translate([0,top_length/2,-side_length+top_length/4])
+            rotate([-45,0,0])
+            cube([frame_width,(top_length/4)*sqrt(2),frame_thickness]);
         }
         // screws
         translate([0,top_length/2-32,5])
