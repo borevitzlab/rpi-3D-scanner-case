@@ -11,6 +11,7 @@ frame_width=15;
 top_screw_size=3; 
 top_length=105; 
 side_length=212;
+fudge=0.001;
 
 
 module rounded_corner(length,radius){
