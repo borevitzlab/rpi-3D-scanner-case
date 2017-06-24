@@ -8,8 +8,8 @@ $fn=30; // fix constant
 frame_width=10;
 
 // Constants (may still need adjustment for printing)
-top_screw_size=3; 
-top_length=105; 
+top_screw_size=5; 
+top_length=107; 
 side_length=212;
 fudge=0.001;
 
