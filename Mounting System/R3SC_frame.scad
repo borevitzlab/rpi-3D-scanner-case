@@ -11,7 +11,7 @@ frame_width=10;
 top_screw_size=5; 
 top_length=107; 
 side_length=212;
-fudge=0.001;
+fudge=0.01;
 
 
 module rounded_corner(length,radius){
@@ -27,7 +27,7 @@ module frame_half(){
         union(){
             //top
             translate([0,0,2.5])
-            cube([frame_thickness, top_length/2, 5]);
+            cube([frame_thickness, top_length/2, 6]);
             cube([frame_width, top_length/2+frame_thickness, frame_thickness]);
             //side
             translate([0,top_length/2,-side_length])
@@ -44,9 +44,9 @@ module frame_half(){
             cube([frame_width,(top_length/4)*sqrt(2),frame_thickness]);
         }
         // screws
-        translate([0,top_length/2-32,5])
+        translate([-fudge,top_length/2-32,5])
         rotate([0,90,0])
-        cylinder(d=top_screw_size,h=frame_thickness*2);
+        cylinder(d=top_screw_size,h=frame_thickness*4);
         translate([frame_width/2,top_length/2+top_length/8,-side_length])
         cylinder(d=bar_screw_size,h=frame_thickness*2);
     }
